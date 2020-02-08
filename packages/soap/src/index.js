@@ -1,5 +1,5 @@
 const soap = require('soap');
-const MarketingCloudAuth = require('marketing-cloud-auth');
+const MarketingCloudAuth = require('@marketing-cloud/auth');
 const applyAuthHeader = require('./utils/apply-auth-header');
 const convertDates = require('./utils/convert-dates');
 const ResponseError = require('./objects/response-error');
