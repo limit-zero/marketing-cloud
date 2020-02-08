@@ -1,6 +1,20 @@
 const typeProperties = require('../utils/type-properties');
 
 module.exports = {
+  LinkSend: {
+    clickEvents: async ({ ID }, _, { mc }, info) => {
+      const props = typeProperties(info);
+      const Filter = {
+        attributes: { 'xsi:type': 'SimpleFilterPart' },
+        Property: 'URLID',
+        SimpleOperator: 'equals',
+        Value: ID,
+      };
+      const { Results } = await mc.retrieve('ClickEvent', props, { Filter });
+      return Results;
+    },
+  },
+
   /**
    *
    */

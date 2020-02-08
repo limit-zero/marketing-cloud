@@ -15,6 +15,7 @@ type LinkSend {
   uniqueClicks: Int @prop(name: "Link.UniqueClicks")
   linkId: Int @prop(name: "Link.ID")
   sendId: Int @prop(name: "SendID")
+  clickEvents: [ClickEvent]
 }
 
 input LinkSendQueryInput {

@@ -1,11 +1,13 @@
 const GraphQLJSON = require('graphql-type-json');
 const merge = require('lodash.merge');
 const { DateType } = require('../types');
+const clickEvent = require('./click-event');
 const email = require('./email');
 const linkSend = require('./link-send');
 const send = require('./send');
 
 module.exports = merge(
+  clickEvent,
   email,
   linkSend,
   send,

@@ -1,4 +1,5 @@
 const gql = require('graphql-tag');
+const clickEvent = require('./click-event');
 const email = require('./email');
 const linkSend = require('./link-send');
 const send = require('./send');
@@ -18,6 +19,7 @@ type Mutation {
   ping: String!
 }
 
+${clickEvent}
 ${email}
 ${linkSend}
 ${send}
