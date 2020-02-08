@@ -23,6 +23,7 @@ type Send {
   unsubscribes: Int @prop(name: "Unsubscribes")
 
   email: Email @prop(name: "Email.ID")
+  links: [LinkSend]
 
   createdDate: Date @prop(name: "CreatedDate")
   modifiedDate: Date @prop(name: "ModifiedDate")

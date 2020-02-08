@@ -1,5 +1,6 @@
 const gql = require('graphql-tag');
 const email = require('./email');
+const linkSend = require('./link-send');
 const send = require('./send');
 
 module.exports = gql`
@@ -18,6 +19,7 @@ type Mutation {
 }
 
 ${email}
+${linkSend}
 ${send}
 
 `;
