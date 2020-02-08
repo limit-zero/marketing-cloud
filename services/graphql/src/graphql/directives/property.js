@@ -1,4 +1,5 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
+const { get } = require('object-path');
 
 class PropertyDirective extends SchemaDirectiveVisitor {
   /**
@@ -18,7 +19,7 @@ class PropertyDirective extends SchemaDirectiveVisitor {
     if (!field.resolve) {
       // Add automatic property resolver when not specified.
       // eslint-disable-next-line no-param-reassign
-      field.resolve = (obj) => obj[name];
+      field.resolve = (obj) => get(obj, name);
     }
   }
 }
