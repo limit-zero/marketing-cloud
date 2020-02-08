@@ -5,6 +5,7 @@
   "private": true,
   "repository": "https://github.com/limit-zero/marketing-cloud",
   "scripts": {
+    "lint": "lerna run lint",
     "test": "lerna run test"
   },
   "workspaces": [
