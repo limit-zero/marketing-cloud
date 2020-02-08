@@ -17,6 +17,11 @@ x-node-defaults: &node
     <<: *env
 
 services:
+  commands:
+    <<: *node
+    entrypoint: ["tail"]
+    command: ["-f", "/dev/null"]
+
   graphql:
     <<: *node
     working_dir: /mc/services/graphql
