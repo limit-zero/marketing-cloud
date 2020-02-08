@@ -22,6 +22,8 @@ type Send {
   uniqueClicks: Int @prop(name: "UniqueClicks")
   unsubscribes: Int @prop(name: "Unsubscribes")
 
+  email: Email @prop(name: "Email.ID")
+
   createdDate: Date @prop(name: "CreatedDate")
   modifiedDate: Date @prop(name: "ModifiedDate")
 }
