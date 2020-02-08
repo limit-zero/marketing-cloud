@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "marketing-cloud": {
+      "schemaPath": "schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "dev": "http://0.0.0.0:17430"
+        }
+      }
+    }
+  }
+}
