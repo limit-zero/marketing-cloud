@@ -1,24 +1,19 @@
+const typeProperties = require('../utils/type-properties');
+
 module.exports = {
   /**
    *
    */
-  Send: {
-    id: (send) => send.ID,
-    emailName: (send) => send.EmailName,
-  },
-
-  /**
-   *
-   */
   Query: {
-    send: async (_, { input }, { mc }) => {
+    send: async (_, { input }, { mc }, info) => {
       const { id } = input;
+      const props = typeProperties(info);
       const send = await mc.retrieveOne('Send', {
         attributes: { 'xsi:type': 'SimpleFilterPart' },
         Property: 'ID',
         SimpleOperator: 'equals',
         Value: id,
-      }, ['ID', 'EmailName']);
+      }, props);
       if (!send) return null;
       return send;
     },

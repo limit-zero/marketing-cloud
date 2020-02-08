@@ -7,14 +7,14 @@ extend type Query {
 }
 
 type Send {
-  id: Int!
-  emailName: String!
-  subject: String
-  previewUrl: String
-  status: String
-  sentDate: Date
-  createdDate: Date
-  modifiedDate: Date
+  id: Int! @prop(name: "ID")
+  emailName: String! @prop(name: "EmailName")
+  subject: String @prop(name: "Subject")
+  previewUrl: String @prop(name: "PreviewURL")
+  status: String @prop(name: "Status")
+  sentDate: Date @prop(name: "SentDate")
+  createdDate: Date @prop(name: "CreatedDate")
+  modifiedDate: Date @prop(name: "ModifiedDate")
 }
 
 input SendQueryInput {
