@@ -1,0 +1,29 @@
+version: '3.7'
+
+x-node-defaults: &node
+  tty: true
+  init: true
+  image: node:12.15
+  working_dir: /mc
+  restart: always
+  volumes:
+    - .:/mc:cached
+    - ./node_modules:/mc/node_modules:delegated
+    - yarn-cache:/.yarn-cache
+
+services:
+  graphql:
+    <<: *node
+    working_dir: /mc/services/graphql
+    entrypoint: ["node_modules/.bin/gulp"]
+    environment:
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 17430
+      FUEL_API_CLIENT_ID: ${FUEL_API_CLIENT_ID}
+      FUEL_API_CLIENT_SECRET: ${FUEL_API_CLIENT_SECRET}
+      FUEL_API_WSDL: https://webservice.s7.exacttarget.com/etframework.wsdl
+    ports:
+      - "17430:80"
+
+volumes:
+  yarn-cache: {}
