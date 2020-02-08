@@ -32,7 +32,7 @@ services:
       EXTERNAL_PORT: 17430
       FUEL_API_CLIENT_ID: ${FUEL_API_CLIENT_ID}
       FUEL_API_CLIENT_SECRET: ${FUEL_API_CLIENT_SECRET}
-      FUEL_API_WSDL: https://webservice.s7.exacttarget.com/etframework.wsdl
+      FUEL_API_AUTH_URL: ${FUEL_API_AUTH_URL}
     ports:
       - "17430:80"
 
