@@ -1,7 +1,7 @@
 {
   "name": "@marketing-cloud/soap",
   "version": "0.0.0",
-  "description": "Salesforce Marketing Cloud REST Authentication",
+  "description": "Salesforce Marketing Cloud (Fuel) SOAP Client",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
