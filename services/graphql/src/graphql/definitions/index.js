@@ -9,6 +9,7 @@ module.exports = gql`
 scalar Date
 scalar JSON
 
+directive @applyInterfaceFields on OBJECT
 directive @prop(name: String, needs: [String] = []) on FIELD_DEFINITION
 
 type Query {
