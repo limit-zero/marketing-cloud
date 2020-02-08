@@ -12,21 +12,19 @@ class MarketingCloudSOAP {
    * For WSDL information visit: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-apis.meta/mc-apis/wsdl-endpoint-links.htm
    *
    * @param {object} options The SOAP client options.
-   * @param {string} options.wsdl The WSDL link to connect to. Must be for your stack.
-   * @param {object} options.auth The Authentication options.
-   * @param {string} options.auth.clientId The Marketing Cloud API ID
-   * @param {string} options.auth.clientSecret The Marketing Cloud API Scecret
-   * @param {string} options.auth.authUrl The Marketing Cloud auth URL (optional)
+   * @param {string} options.clientId The Marketing Cloud API ID
+   * @param {string} options.clientSecret The Marketing Cloud API Scecret
+   * @param {string} options.authUrl The Marketing Cloud auth URL for your tenant
    * @param {object} options.soapOptions Additional options to send to the SOAP client.
    *                                     See https://github.com/vpulim/node-soap#options for more info.
    */
   constructor({
-    wsdl = 'https://webservice.exacttarget.com/etframework.wsdl',
-    auth = {},
+    clientId,
+    clientSecret,
+    authUrl,
     soapOptions = {},
   } = {}) {
-    this.auth = new MarketingCloudAuth(auth);
-    this.wsdl = wsdl;
+    this.auth = new MarketingCloudAuth({ clientId, clientSecret, authUrl });
     this.soapOptions = soapOptions;
   }
 
@@ -107,21 +105,20 @@ class MarketingCloudSOAP {
   }
 
   /**
-   * Inits and returns the SOAP client using the configured WSDL URL.
+   * Inits and returns the SOAP client using the WSDL returned from auth.
    *
    * @private
    * @return {Promise}
    */
   async client() {
-    if (!this.clientPromise) {
-      this.clientPromise = soap.createClientAsync(this.wsdl, this.soapOptions);
-    }
     try {
-      const [token, client] = await Promise.all([
-        this.auth.retrieve(),
-        this.clientPromise,
-      ]);
-      applyAuthHeader(client, `<fueloauth>${token.value}</fueloauth>`);
+      this.token = await this.auth.retrieve();
+      const wsdl = `${this.token.soapUrl}etframework.wsdl`;
+      if (!this.clientPromise) {
+        this.clientPromise = soap.createClientAsync(wsdl, this.soapOptions);
+      }
+      const client = await this.clientPromise;
+      applyAuthHeader(client, `<fueloauth>${this.token.value}</fueloauth>`);
       return client;
     } catch (e) {
       this.clientPromise = undefined;
