@@ -13,6 +13,15 @@ type Send {
   previewUrl: String @prop(name: "PreviewURL")
   status: String @prop(name: "Status")
   sentDate: Date @prop(name: "SentDate")
+
+  numberSent: Int @prop(name: "NumberSent")
+  numberDelivered: Int @prop(name: "NumberDelivered")
+  numberExcluded: Int @prop(name: "NumberExcluded")
+  numberTargeted: Int @prop(name: "NumberTargeted")
+  uniqueOpens: Int @prop(name: "UniqueOpens")
+  uniqueClicks: Int @prop(name: "UniqueClicks")
+  unsubscribes: Int @prop(name: "Unsubscribes")
+
   createdDate: Date @prop(name: "CreatedDate")
   modifiedDate: Date @prop(name: "ModifiedDate")
 }
