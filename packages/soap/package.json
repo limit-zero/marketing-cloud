@@ -1,0 +1,35 @@
+{
+  "name": "@marketing-cloud/soap",
+  "version": "0.0.0",
+  "description": "Salesforce Marketing Cloud REST Authentication",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/limit-zero/marketing-cloud/tree/master/packages/soap",
+  "directories": {
+    "lib": "./src"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "engines": {
+    "node": ">=8.6"
+  },
+  "dependencies": {
+    "marketing-cloud-auth": "^1.1.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "node-fetch": "^2.6.0",
+    "pretty": "^2.0.0",
+    "soap": "^0.30.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
