@@ -1,12 +1,11 @@
 const typeProperties = require('../utils/type-properties');
-const findById = require('../utils/find-by-id');
 
 module.exports = {
   Send: {
-    email: async ({ Email }, _, { mc }, info) => {
+    email: ({ Email }, _, { mc }, info) => {
       if (!Email || !Email.ID) return null;
       const props = typeProperties(info);
-      return findById('Email', { id: Email.ID, props, mc });
+      return mc.retrieveById('Email', Email.ID, props);
     },
   },
 
@@ -17,7 +16,7 @@ module.exports = {
     send: (_, { input }, { mc }, info) => {
       const { id } = input;
       const props = typeProperties(info);
-      return findById('Send', { id, props, mc });
+      return mc.retrieveById('Send', id, props);
     },
   },
 };
