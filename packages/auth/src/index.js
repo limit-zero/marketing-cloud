@@ -3,24 +3,28 @@ const AuthToken = require('./token');
 
 class MarketingCloudAuth {
   /**
-   * @see https://developer.salesforce.com/docs/atlas.en-us.mc-getting-started.meta/mc-getting-started/get-access-token.htm
+   * @see https://developer.salesforce.com/docs/atlas.en-us.mc-app-development.meta/mc-app-development/access-token-s2s.htm
    *
    * @param {object} options
    * @param {string} options.clientId The Marketing Cloud API ID
    * @param {string} options.clientSecret The Marketing Cloud API Scecret
-   * @param {string} options.authUrl The Marketing Cloud auth URL (optional)
+   * @param {string} options.authUrl The Marketing Cloud auth URL
+   * @param {string} options.accountId Account identifier, or MID, of the target business unit.
+   *                 If not specified, will use the BU that created the integration.
    */
   constructor({
     clientId,
     clientSecret,
-    authUrl = 'https://auth.exacttargetapis.com/v1/requestToken',
+    authUrl,
+    accountId,
   } = {}) {
-    if (!clientId || !clientSecret) {
-      throw new Error('The `clientId` and `clientSecret` options are required.');
+    if (!clientId || !clientSecret || !authUrl) {
+      throw new Error('The `clientId`, `clientSecret` and `authUrl` options are required.');
     }
     this.clientId = clientId;
     this.clientSecret = clientSecret;
     this.authUrl = authUrl;
+    this.accountId = accountId;
   }
 
   /**
@@ -57,27 +61,30 @@ class MarketingCloudAuth {
    * @returns {Promise<string>} The Marketing Cloud access token.
    */
   async fetch(options = {}) {
-    const { clientId, clientSecret } = this;
+    const { clientId, clientSecret, accountId } = this;
     // Set the retrievedAt before the request so the expiration will be slightly padded.
     const retrievedAt = new Date();
-    const res = await fetch(this.authUrl, {
+    const res = await fetch(`${this.authUrl}/v2/token`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ clientId, clientSecret }),
+      body: JSON.stringify({
+        grant_type: 'client_credentials',
+        client_id: clientId,
+        client_secret: clientSecret,
+        account_id: accountId,
+      }),
       ...options,
     });
 
     const {
-      errorcode,
-      message,
-      accessToken,
-      expiresIn,
+      access_token: accessToken,
+      expires_in: expiresIn,
+      error,
+      error_description: message,
     } = await res.json();
 
-    if (errorcode) {
-      const e = new Error(message || 'An unknown, fatal error occured.');
-      e.code = errorcode;
-      throw e;
+    if (error) {
+      throw new Error(message || 'An unknown, fatal error occured.');
     }
     return { accessToken, expiresIn, retrievedAt };
   }
