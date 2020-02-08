@@ -1,0 +1,30 @@
+{
+  "name": "@marketing-cloud/auth",
+  "version": "0.0.0",
+  "description": "Salesforce Marketing Cloud REST Authentication",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/limit-zero/marketing-cloud/tree/master/packages/auth",
+  "directories": {
+    "lib": "./src"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "engines": {
+    "node": ">=8.6"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
