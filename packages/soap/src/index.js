@@ -15,16 +15,23 @@ class MarketingCloudSOAP {
    * @param {string} options.clientId The Marketing Cloud API ID
    * @param {string} options.clientSecret The Marketing Cloud API Scecret
    * @param {string} options.authUrl The Marketing Cloud auth URL for your tenant
-   * @param {object} options.soapOptions Additional options to send to the SOAP client.
+   * @param {number} [options.accountId] Optional account identifier of the target business unit
+   * @param {object} [options.soapOptions] Additional options to send to the SOAP client.
    *                                     See https://github.com/vpulim/node-soap#options for more info.
    */
   constructor({
     clientId,
     clientSecret,
     authUrl,
+    accountId,
     soapOptions = {},
   } = {}) {
-    this.auth = new MarketingCloudAuth({ clientId, clientSecret, authUrl });
+    this.auth = new MarketingCloudAuth({
+      clientId,
+      clientSecret,
+      authUrl,
+      accountId,
+    });
     this.soapOptions = soapOptions;
   }
 

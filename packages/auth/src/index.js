@@ -85,7 +85,7 @@ class MarketingCloudAuth {
         grant_type: 'client_credentials',
         client_id: clientId,
         client_secret: clientSecret,
-        account_id: accountId,
+        account_id: accountId || undefined,
       }),
       ...options,
     });
