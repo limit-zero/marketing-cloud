@@ -1,4 +1,5 @@
 const gql = require('graphql-tag');
+const email = require('./email');
 const send = require('./send');
 
 module.exports = gql`
@@ -16,6 +17,7 @@ type Mutation {
   ping: String!
 }
 
+${email}
 ${send}
 
 `;
