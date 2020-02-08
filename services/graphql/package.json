@@ -1,0 +1,22 @@
+{
+  "name": "@marketing-cloud/graphql-service",
+  "version": "0.0.0",
+  "description": "A GraphQL API/server for the Salesforce Marketing Cloud (FuelSDK)",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/limit-zero/marketing-cloud/tree/master/services/graphql",
+  "private": true,
+  "scripts": {
+    "dev": "gulp",
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1"
+  }
+}
