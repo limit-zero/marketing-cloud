@@ -44,8 +44,22 @@ class MarketingCloudAuth {
       this.fetchPromise = this.fetch(fetchOptions);
     }
     try {
-      const { accessToken, expiresIn, retrievedAt } = await this.fetchPromise;
-      this.token = new AuthToken({ value: accessToken, expiresIn, retrievedAt });
+      const {
+        accessToken,
+        expiresIn,
+        retrievedAt,
+        soapUrl,
+        restUrl,
+        scope,
+      } = await this.fetchPromise;
+      this.token = new AuthToken({
+        value: accessToken,
+        expiresIn,
+        retrievedAt,
+        soapUrl,
+        restUrl,
+        scope,
+      });
       return this.token;
     } catch (e) {
       this.fetchPromise = undefined;
@@ -81,12 +95,22 @@ class MarketingCloudAuth {
       expires_in: expiresIn,
       error,
       error_description: message,
+      soap_instance_url: soapUrl,
+      rest_instance_url: restUrl,
+      scope,
     } = await res.json();
 
     if (error) {
       throw new Error(message || 'An unknown, fatal error occured.');
     }
-    return { accessToken, expiresIn, retrievedAt };
+    return {
+      accessToken,
+      expiresIn,
+      retrievedAt,
+      soapUrl,
+      restUrl,
+      scope,
+    };
   }
 }
 
