@@ -20,7 +20,6 @@
     "marketing-cloud-auth": "^1.1.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
-    "node-fetch": "^2.6.0",
     "pretty": "^2.0.0",
     "soap": "^0.30.0"
   },
