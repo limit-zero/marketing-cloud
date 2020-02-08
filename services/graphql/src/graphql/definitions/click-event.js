@@ -6,9 +6,8 @@ extend type Query {
   clickEventsForSend(input: ClickEventsForSendQueryInput = {}): [ClickEvent]
 }
 
-type ClickEvent {
+type ClickEvent implements ClientIdentifiable @applyInterfaceFields {
   id: Int! @prop(name: "ID")
-  clientId: Int! @prop(name: "Client.ID")
   eventType: String @prop(name: "EventType")
   sendId: Int @prop(name: "SendID")
   subscriberKey: String @prop(name: "SubscriberKey")

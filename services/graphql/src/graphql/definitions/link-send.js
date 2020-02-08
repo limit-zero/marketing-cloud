@@ -7,9 +7,8 @@ extend type Query {
   linksForSend(input: LinksForSendQueryInput = {}): [LinkSend]
 }
 
-type LinkSend {
+type LinkSend implements ClientIdentifiable @applyInterfaceFields {
   id: Int! @prop(name: "ID")
-  clientId: Int! @prop(name: "Client.ID")
   url: String @prop(name: "Link.URL")
   alias: String @prop(name: "Link.Alias")
   totalClicks: Int @prop(name: "Link.TotalClicks")

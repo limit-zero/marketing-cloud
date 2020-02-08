@@ -20,6 +20,10 @@ type Mutation {
   ping: String!
 }
 
+interface ClientIdentifiable {
+  clientId: Int! @prop(name: "Client.ID")
+}
+
 ${clickEvent}
 ${email}
 ${linkSend}
