@@ -57,6 +57,11 @@
     envalid "^5.0.0"
     validator "^11.0.0"
 
+"@base-cms/utils@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@base-cms/utils/-/utils-1.9.0.tgz#fb208c11b155d019876806855e7a8bb1c56041fd"
+  integrity sha512-mo3sRxE/KL1i1haP8MrZa32aZaKz4dOqtUb84DOHSlNrhyoPEJ0wq/+KKi6gLjYAY6j2ECxmDcgBztcYjamIEg==
+
 "@evocateur/libnpmaccess@^3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@evocateur/libnpmaccess/-/libnpmaccess-3.1.2.tgz#ecf7f6ce6b004e9f942b098d92200be4a4b1c845"
