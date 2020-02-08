@@ -1,0 +1,17 @@
+{
+  "name": "marketing-cloud",
+  "description": "Salesforce Marketing Cloud (Fuel) monorepo of packages and services",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "private": true,
+  "repository": "https://github.com/limit-zero/marketing-cloud",
+  "scripts": {
+    "test": "lerna run test"
+  },
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  }
+}
