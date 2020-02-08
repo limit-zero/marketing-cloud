@@ -8,6 +8,7 @@ extend type Query {
 
 type ClickEvent {
   id: Int! @prop(name: "ID")
+  clientId: Int! @prop(name: "Client.ID")
   eventType: String @prop(name: "EventType")
   sendId: Int @prop(name: "SendID")
   subscriberKey: String @prop(name: "SubscriberKey")

@@ -8,6 +8,7 @@ extend type Query {
 
 type Send {
   id: Int! @prop(name: "ID")
+  clientId: Int! @prop(name: "Client.ID")
   emailName: String! @prop(name: "EmailName")
   subject: String @prop(name: "Subject")
   previewUrl: String @prop(name: "PreviewURL")
