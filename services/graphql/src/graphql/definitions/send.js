@@ -10,6 +10,7 @@ extend type Query {
 type Send implements ClientIdentifiable @applyInterfaceFields {
   id: Int! @prop(name: "ID")
   emailName: String! @prop(name: "EmailName")
+  emailId: Int! @prop(name: "Email.ID")
   subject: String @prop(name: "Subject")
   previewUrl: String @prop(name: "PreviewURL")
   status: String @prop(name: "Status")
