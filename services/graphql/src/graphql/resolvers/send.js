@@ -34,9 +34,23 @@ module.exports = {
     },
 
     sends: async (_, { input }, { mc }, info) => {
-      const { continueRequest } = input;
+      const { continueRequest, ids } = input;
       const props = connectionProps(info);
-      const response = continueRequest ? await mc.continueRetrieve(continueRequest) : await mc.retrieve('Send', props);
+      if (continueRequest) {
+        const nextBatch = await mc.continueRetrieve(continueRequest);
+        return buildConnection(nextBatch);
+      }
+      const options = {};
+      if (ids.length) {
+        // Only return the specified sends.
+        options.Filter = {
+          attributes: { 'xsi:type': 'SimpleFilterPart' },
+          Property: 'ID',
+          SimpleOperator: ids.length === 1 ? 'equals' : 'IN',
+          Value: ids.length === 1 ? ids[0] : ids,
+        };
+      }
+      const response = await mc.retrieve('Send', props, options);
       return buildConnection(response);
     },
   },

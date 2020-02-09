@@ -44,6 +44,8 @@ input SendQueryInput {
 }
 
 input SendsQueryInput {
+  "Send IDs to return. Will do an IN query."
+  ids: [Int] = []
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
 }
