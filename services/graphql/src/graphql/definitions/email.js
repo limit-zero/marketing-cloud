@@ -4,6 +4,7 @@ module.exports = gql`
 
 extend type Query {
   email(input: EmailQueryInput = {}): Email
+  emails(input: EmailsQueryInput = {}): EmailConnection!
 }
 
 type Email implements ClientIdentifiable @applyInterfaceFields {
@@ -17,8 +18,24 @@ type Email implements ClientIdentifiable @applyInterfaceFields {
   modifiedDate: Date @prop(name: "ModifiedDate")
 }
 
+type EmailConnection @usePropsFrom(type: "Email") {
+  edges: [EmailEdge]!
+  pageInfo: PageInfo!
+}
+
+type EmailEdge {
+  node: Email!
+}
+
 input EmailQueryInput {
   id: Int!
+}
+
+input EmailsQueryInput {
+  "Email IDs to return. Will do an IN query."
+  ids: [Int] = []
+  "A previous request ID to finish processing. All other input will be ignored."
+  continueRequest: String
 }
 
 `;

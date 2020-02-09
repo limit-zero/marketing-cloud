@@ -1,4 +1,7 @@
 const typeProperties = require('../utils/type-properties');
+const connectionProps = require('../utils/connection-properties');
+const buildConnection = require('../utils/build-connection');
+const buildInFilter = require('../utils/build-in-filter');
 
 module.exports = {
   /**
@@ -8,14 +11,20 @@ module.exports = {
     email: async (_, { input }, { mc }, info) => {
       const { id } = input;
       const props = typeProperties(info);
-      const email = await mc.retrieveOne('Email', {
-        attributes: { 'xsi:type': 'SimpleFilterPart' },
-        Property: 'ID',
-        SimpleOperator: 'equals',
-        Value: id,
-      }, props);
-      if (!email) return null;
-      return email;
+      return mc.retrieveById('Email', id, props);
+    },
+
+    emails: async (_, { input }, { mc }, info) => {
+      const { continueRequest, ids } = input;
+      if (continueRequest) {
+        const nextBatch = await mc.continueRetrieve(continueRequest);
+        return buildConnection(nextBatch);
+      }
+      const props = connectionProps(info);
+      const Filter = buildInFilter({ prop: 'ID', values: ids });
+      const options = { ...(Filter && { Filter }) };
+      const response = await mc.retrieve('Email', props, options);
+      return buildConnection(response);
     },
   },
 };
