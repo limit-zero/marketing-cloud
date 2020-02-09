@@ -86,6 +86,21 @@ class MarketingCloudSOAP {
     });
   }
 
+  async continueRetrieve(requestId) {
+    const client = await this.client();
+    const [result, rawResponse, soapHeader, rawRequest] = await client.RetrieveAsync({
+      RetrieveRequest: {
+        ContinueRequest: requestId,
+      },
+    });
+    return MarketingCloudSOAP.handleResponse({
+      result,
+      rawResponse,
+      rawRequest,
+      soapHeader,
+    });
+  }
+
   async create(type, payload, options) {
     const client = await this.client();
     const [result, rawResponse, soapHeader, rawRequest] = await client.CreateAsync({
