@@ -1,5 +1,6 @@
 const gql = require('graphql-tag');
 const clickEvent = require('./click-event');
+const dataFolder = require('./data-folder');
 const email = require('./email');
 const linkSend = require('./link-send');
 const send = require('./send');
@@ -31,6 +32,7 @@ interface ClientIdentifiable {
 }
 
 ${clickEvent}
+${dataFolder}
 ${email}
 ${linkSend}
 ${send}
