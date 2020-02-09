@@ -18,6 +18,10 @@ module.exports = merge(
     Date: DateType,
     JSON: GraphQLJSON,
 
+    ClientIdentifiable: {
+      __resolveType: ({ type }) => type,
+    },
+
     /**
      * Root queries.
      */
