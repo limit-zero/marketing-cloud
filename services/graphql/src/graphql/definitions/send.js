@@ -47,6 +47,8 @@ input SendQueryInput {
 input SendsQueryInput {
   "Send IDs to return. Will do an IN query."
   ids: [Int] = []
+  "Return Sends for the specified Email IDs. Will do an IN query."
+  emailIds: [Int] = []
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
 }
