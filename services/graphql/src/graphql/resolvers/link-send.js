@@ -1,30 +1,16 @@
 const typeProperties = require('../utils/type-properties');
+const buildComplexFilter = require('../utils/build-complex-filter');
+const buildSimpleFilter = require('../utils/build-simple-filter');
 
 module.exports = {
   LinkSend: {
     clickEvents: async ({ ID, SendID }, _, { mc }, info) => {
       const props = typeProperties(info);
-
-      const LeftOperand = {
-        attributes: { 'xsi:type': 'SimpleFilterPart' },
-        Property: 'SendId',
-        SimpleOperator: 'equals',
-        Value: SendID,
-      };
-
-      const RightOperand = {
-        attributes: { 'xsi:type': 'SimpleFilterPart' },
-        Property: 'URLID',
-        SimpleOperator: 'equals',
-        Value: ID,
-      };
-
-      const Filter = {
-        attributes: { 'xsi:type': 'ComplexFilterPart' },
-        LeftOperand,
-        LogicalOperator: 'AND',
-        RightOperand,
-      };
+      const Filter = buildComplexFilter({
+        left: buildSimpleFilter({ prop: 'SendId', value: SendID }),
+        right: buildSimpleFilter({ prop: 'URLID', value: ID }),
+        operator: 'AND',
+      });
       const { Results } = await mc.retrieve('ClickEvent', props, { Filter });
       return Results;
     },
