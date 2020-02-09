@@ -13,6 +13,8 @@ type Email implements ClientIdentifiable @applyInterfaceFields {
   subject: String @prop(name: "Subject")
   status: String @prop(name: "Status")
   characterSet: String @prop(name: "CharacterSet")
+  categoryId: Int @prop(name: "CategoryID")
+  dataFolderId: Int @prop(name: "CategoryID")
 
   createdDate: Date @prop(name: "CreatedDate")
   modifiedDate: Date @prop(name: "ModifiedDate")
