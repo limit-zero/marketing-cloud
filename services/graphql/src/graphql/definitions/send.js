@@ -4,6 +4,7 @@ module.exports = gql`
 
 extend type Query {
   send(input: SendQueryInput = {}): Send
+  sends: SendConnection!
 }
 
 type Send implements ClientIdentifiable @applyInterfaceFields {
@@ -27,6 +28,15 @@ type Send implements ClientIdentifiable @applyInterfaceFields {
 
   createdDate: Date @prop(name: "CreatedDate")
   modifiedDate: Date @prop(name: "ModifiedDate")
+}
+
+type SendConnection @usePropsFrom(type: "Send") {
+  edges: [SendEdge]!
+  pageInfo: PageInfo!
+}
+
+type SendEdge {
+  node: Send!
 }
 
 input SendQueryInput {

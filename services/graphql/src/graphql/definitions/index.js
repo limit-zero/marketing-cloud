@@ -11,6 +11,7 @@ scalar JSON
 
 directive @applyInterfaceFields on OBJECT
 directive @prop(name: String, needs: [String] = []) on FIELD_DEFINITION
+directive @usePropsFrom(type: String!) on OBJECT
 
 type Query {
   ping: String!
@@ -18,6 +19,11 @@ type Query {
 
 type Mutation {
   ping: String!
+}
+
+type PageInfo {
+  requestId: String!
+  hasMoreData: Boolean!
 }
 
 interface ClientIdentifiable {
