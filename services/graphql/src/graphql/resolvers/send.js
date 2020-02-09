@@ -1,4 +1,6 @@
 const typeProperties = require('../utils/type-properties');
+const connectionProps = require('../utils/connection-properties');
+const buildConnection = require('../utils/build-connection');
 
 module.exports = {
   Send: {
@@ -29,6 +31,13 @@ module.exports = {
       const { id } = input;
       const props = typeProperties(info);
       return mc.retrieveById('Send', id, props);
+    },
+
+    sends: async (_, { input }, { mc }, info) => {
+      const { continueRequest } = input;
+      const props = connectionProps(info);
+      const response = continueRequest ? await mc.continueRetrieve(continueRequest) : await mc.retrieve('Send', props);
+      return buildConnection(response);
     },
   },
 };

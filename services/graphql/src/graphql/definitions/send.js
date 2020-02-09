@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   send(input: SendQueryInput = {}): Send
-  sends: SendConnection!
+  sends(input: SendsQueryInput = {}): SendConnection!
 }
 
 type Send implements ClientIdentifiable @applyInterfaceFields {
@@ -41,6 +41,11 @@ type SendEdge {
 
 input SendQueryInput {
   id: Int!
+}
+
+input SendsQueryInput {
+  "A previous request ID to finish processing. All other input will be ignored."
+  continueRequest: String
 }
 
 `;
