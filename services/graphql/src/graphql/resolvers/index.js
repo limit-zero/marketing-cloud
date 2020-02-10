@@ -6,6 +6,7 @@ const dataFolder = require('./data-folder');
 const email = require('./email');
 const linkSend = require('./link-send');
 const send = require('./send');
+const subscriber = require('./subscriber');
 
 module.exports = merge(
   clickEvent,
@@ -13,6 +14,7 @@ module.exports = merge(
   email,
   linkSend,
   send,
+  subscriber,
   {
     /**
      * Custom scalar types.

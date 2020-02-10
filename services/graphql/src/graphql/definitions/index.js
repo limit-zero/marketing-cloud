@@ -4,6 +4,7 @@ const dataFolder = require('./data-folder');
 const email = require('./email');
 const linkSend = require('./link-send');
 const send = require('./send');
+const subscriber = require('./subscriber');
 
 module.exports = gql`
 
@@ -36,5 +37,6 @@ ${dataFolder}
 ${email}
 ${linkSend}
 ${send}
+${subscriber}
 
 `;
