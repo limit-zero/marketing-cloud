@@ -12,6 +12,8 @@ type Send implements ClientIdentifiable @applyInterfaceFields {
   emailName: String! @prop(name: "EmailName")
   emailId: Int! @prop(name: "Email.ID")
   subject: String @prop(name: "Subject")
+  fromAddress: String @prop(name: "FromAddress")
+  fromName: String @prop(name: "FromName")
   previewUrl: String @prop(name: "PreviewURL")
   status: String @prop(name: "Status")
   sentDate: Date @prop(name: "SentDate")
@@ -23,6 +25,10 @@ type Send implements ClientIdentifiable @applyInterfaceFields {
   uniqueOpens: Int @prop(name: "UniqueOpens")
   uniqueClicks: Int @prop(name: "UniqueClicks")
   unsubscribes: Int @prop(name: "Unsubscribes")
+  forwardedEmails: Int @prop(name: "ForwardedEmails")
+  hardBounces: Int @prop(name: "HardBounces")
+  softBounces: Int @prop(name: "SoftBounces")
+  otherBounces: Int @prop(name: "OtherBounces")
 
   email: Email @prop(name: "Email.ID")
   links: [LinkSend]
