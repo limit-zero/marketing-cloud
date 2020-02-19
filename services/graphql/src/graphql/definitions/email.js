@@ -18,6 +18,8 @@ type Email implements ClientIdentifiable @applyInterfaceFields {
 
   createdDate: Date @prop(name: "CreatedDate")
   modifiedDate: Date @prop(name: "ModifiedDate")
+
+  sends(input: EmailSendsInput = {}): SendConnection! @prop(name: "ID")
 }
 
 type EmailConnection @usePropsFrom(type: "Email") {
@@ -36,6 +38,11 @@ input EmailQueryInput {
 input EmailsQueryInput {
   "Email IDs to return. Will do an IN query."
   ids: [Int] = []
+  "A previous request ID to finish processing. All other input will be ignored."
+  continueRequest: String
+}
+
+input EmailSendsInput {
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
 }
