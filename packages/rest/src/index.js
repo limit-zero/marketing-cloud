@@ -53,8 +53,17 @@ class MarketingCloudREST {
     };
 
     const res = await fetch(url, options);
-    if (!res.ok) throw new Error(`${res.statusCode} ${res.statusText}`);
-    return res.json();
+    const json = await res.json();
+    if (!res.ok) {
+      const message = json.message
+        ? `${json.message} (code: ${json.errorcode}) ${json.documentation}`.trim()
+        : `${res.status} ${res.statusText}`;
+      const error = new Error(message);
+      error.statusCode = res.status;
+      error.statusText = res.statusText;
+      throw error;
+    }
+    return json;
   }
 }
 

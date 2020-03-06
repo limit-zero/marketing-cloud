@@ -1,5 +1,6 @@
 const gql = require('graphql-tag');
 const clickEvent = require('./click-event');
+const dataExtension = require('./data-extension');
 const dataFolder = require('./data-folder');
 const email = require('./email');
 const linkSend = require('./link-send');
@@ -45,6 +46,7 @@ input ValidateEmailAddressQueryInput {
 }
 
 ${clickEvent}
+${dataExtension}
 ${dataFolder}
 ${email}
 ${linkSend}

@@ -9,6 +9,7 @@ extend type Query {
 type DataFolder {
   id: Int! @prop(name: "ID")
   name: String! @prop(name: "Name")
+  fullName: String! @prop(name: "Name", needs: ["ParentFolder.ID"])
   description: String! @prop(name: "Description")
   contentType: String @prop(name: "ContentType")
   isActive: Boolean @prop(name: "IsActive")
