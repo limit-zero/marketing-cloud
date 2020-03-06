@@ -55,6 +55,16 @@ class MarketingCloudSOAP {
     return this.retrieveOne(type, filter, props);
   }
 
+  async retrieveByObjectId(type, objectId, props) {
+    const filter = {
+      attributes: { 'xsi:type': 'SimpleFilterPart' },
+      Property: 'ObjectID',
+      SimpleOperator: 'equals',
+      Value: objectId,
+    };
+    return this.retrieveOne(type, filter, props);
+  }
+
   async retrieveOne(type, filter, props, options) {
     const response = await this.retrieve(type, props, {
       Filter: filter,
