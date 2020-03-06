@@ -15,8 +15,13 @@ type DataExtension implements ClientIdentifiable @applyInterfaceFields {
   id: String! @prop(name: "ObjectID")
   customerKey: String @prop(name: "CustomerKey")
   name: String! @prop(name: "Name")
-  dataFolderId: Int @prop(name: "CategoryID")
+  description: String @prop(name: "Description")
 
+  isSendable: Boolean @prop(name: "IsSendable")
+  isTestable: Boolean @prop(name: "IsTestable")
+  status: String @prop(name: "Status")
+
+  dataFolderId: Int @prop(name: "CategoryID")
   dataFolder: DataFolder @prop(name: "CategoryID")
 }
 
