@@ -34,7 +34,7 @@ type DataExtensionEdge {
   node: DataExtension!
 }
 
-"The Data Extension query input. You must provide either an \`objectId\` or a \`customerKey\` (but not both)."
+"You must provide either an \`objectId\` or a \`customerKey\` (but not both)."
 input DataExtensionQueryInput {
   "The ObjectID of the Data Extension to retrieve."
   objectId: String
@@ -47,9 +47,12 @@ input DataExtensionsQueryInput {
   continueRequest: String
 }
 
+"You must provide either an \`objectId\` or a \`customerKey\` (but not both)."
 input RefreshDataExtensionQueryInput {
   "The ObjectID of the Data Extension to refresh."
-  objectId: String!
+  objectId: String
+  "The Customer (External) Key of the Data Extension to refresh."
+  customerKey: String
 }
 
 `;
