@@ -1,7 +1,7 @@
 {
   "name": "@marketing-cloud/rest",
   "version": "0.0.0",
-  "description": "Salesforce Marketing Cloud (Fuel) REST Client",
+  "description": "Salesforce Marketing Cloud REST Client",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",

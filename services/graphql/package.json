@@ -1,7 +1,7 @@
 {
   "name": "@marketing-cloud/graphql-service",
   "version": "0.0.0",
-  "description": "A GraphQL API/server for the Salesforce Marketing Cloud (FuelSDK)",
+  "description": "A GraphQL API/server for the Salesforce Marketing Cloud",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",

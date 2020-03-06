@@ -1,4 +1,4 @@
-# Salesforce Marketing Cloud (Fuel) Authentication
+# Salesforce Marketing Cloud Authentication
 
 Authenticates and retrieves an access token for the Salesforce Marketing Cloud API. The token can be used for either the REST or SOAP API.
 
