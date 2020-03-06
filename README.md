@@ -13,6 +13,11 @@ Authenticates and retrieves an access token for the Salesforce Marketing Cloud A
 
 Provides a client for making requests to the Marketing Cloud (Fuel) SOAP API.
 
+### Salesforce Marketing Cloud (Fuel) REST Client
+`@marketing-cloud/rest`
+
+Provides a client for making requests to the Marketing Cloud (Fuel) REST API.
+
 ## Services
 
 ### Marketing Cloud GraphQL Server
