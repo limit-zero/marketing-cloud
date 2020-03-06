@@ -34,6 +34,16 @@ module.exports = merge(
        *
        */
       ping: () => 'pong',
+
+      /**
+       *
+       */
+      validateEmailAddress: async (_, { input }, { rest }) => {
+        const { email: address, validators } = input;
+        const body = { email: address, validators };
+        const json = await rest.request({ endpoint: '/address/v1/validateEmail', method: 'POST', body });
+        return json.valid;
+      },
     },
 
     /**
