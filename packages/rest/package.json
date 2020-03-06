@@ -1,0 +1,31 @@
+{
+  "name": "@marketing-cloud/rest",
+  "version": "0.0.0",
+  "description": "Salesforce Marketing Cloud (Fuel) REST Client",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/limit-zero/marketing-cloud/tree/master/packages/rest",
+  "directories": {
+    "lib": "./src"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "engines": {
+    "node": ">=8.6"
+  },
+  "dependencies": {
+    "@marketing-cloud/auth": "^0.0.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
