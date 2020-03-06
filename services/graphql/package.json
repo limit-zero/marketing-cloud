@@ -1,7 +1,7 @@
 {
   "name": "@marketing-cloud/graphql-service",
   "version": "0.0.0",
-  "description": "A GraphQL API/server for the Salesforce Marketing Cloud (FuelSDK)",
+  "description": "A GraphQL API/server for the Salesforce Marketing Cloud",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
@@ -18,6 +18,7 @@
     "@base-cms/utils": "^1.9.0",
     "@godaddy/terminus": "^4.3.1",
     "@marketing-cloud/soap": "^0.0.0",
+    "@marketing-cloud/rest": "^0.0.0",
     "apollo-server-express": "^2.10.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",

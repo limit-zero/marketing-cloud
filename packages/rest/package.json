@@ -1,11 +1,11 @@
 {
-  "name": "@marketing-cloud/soap",
+  "name": "@marketing-cloud/rest",
   "version": "0.0.0",
-  "description": "Salesforce Marketing Cloud SOAP Client",
+  "description": "Salesforce Marketing Cloud REST Client",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
-  "repository": "https://github.com/limit-zero/marketing-cloud/tree/master/packages/soap",
+  "repository": "https://github.com/limit-zero/marketing-cloud/tree/master/packages/rest",
   "directories": {
     "lib": "./src"
   },
@@ -18,10 +18,7 @@
   },
   "dependencies": {
     "@marketing-cloud/auth": "^0.0.0",
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.27",
-    "pretty": "^2.0.0",
-    "soap": "^0.30.0"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

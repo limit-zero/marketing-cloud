@@ -17,6 +17,13 @@ directive @usePropsFrom(type: String!) on OBJECT
 
 type Query {
   ping: String!
+  validateEmailAddress(input: ValidateEmailAddressQueryInput!): Boolean!
+}
+
+enum EmailValidators {
+  SyntaxValidator
+  MXValidator
+  ListDetectiveValidator
 }
 
 type Mutation {
@@ -30,6 +37,11 @@ type PageInfo {
 
 interface ClientIdentifiable {
   clientId: Int! @prop(name: "Client.ID")
+}
+
+input ValidateEmailAddressQueryInput {
+  email: String!
+  validators: [EmailValidators!] = [SyntaxValidator]
 }
 
 ${clickEvent}

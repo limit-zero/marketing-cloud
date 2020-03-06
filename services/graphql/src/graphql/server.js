@@ -1,13 +1,14 @@
 const { ApolloServer } = require('apollo-server-express');
 const schema = require('./schema');
 const mc = require('../mc');
+const rest = require('../rest');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = ({ app, path }) => {
   const server = new ApolloServer({
     schema,
-    context: () => ({ mc }),
+    context: () => ({ mc, rest }),
     // Enable in production
     tracing: false,
     cacheControl: false,
