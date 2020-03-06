@@ -1,3 +1,4 @@
+const { UserInputError } = require('apollo-server-express');
 const typeProperties = require('../utils/type-properties');
 const buildConnection = require('../utils/build-connection');
 const connectionProps = require('../utils/connection-properties');
@@ -22,9 +23,13 @@ module.exports = {
      *
      */
     dataExtension: async (_, { input }, { mc }, info) => {
-      const { objectId } = input;
+      const { objectId, customerKey } = input;
+      if (!objectId && !customerKey) throw new UserInputError('Either the objectId or the customerKey input must be provided.');
+      if (objectId && customerKey) throw new UserInputError('You cannot provide both the objectId and customerKey as input.');
+
       const props = typeProperties(info);
-      return mc.retrieveByObjectId('DataExtension', objectId, props);
+      if (objectId) return mc.retrieveByObjectId('DataExtension', objectId, props);
+      return mc.retrieveByCustomerKey('DataExtension', customerKey, props);
     },
 
     /**
