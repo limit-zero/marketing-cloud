@@ -1,6 +1,6 @@
 {
   "name": "@marketing-cloud/soap",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Salesforce Marketing Cloud SOAP Client",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -17,7 +17,7 @@
     "node": ">=8.6"
   },
   "dependencies": {
-    "@marketing-cloud/auth": "^0.0.0",
+    "@marketing-cloud/auth": "^0.1.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "pretty": "^2.0.0",
