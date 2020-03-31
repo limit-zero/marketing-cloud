@@ -145,6 +145,19 @@ class MarketingCloudSOAP {
     });
   }
 
+  async raw(xml) {
+    const client = await this.client();
+    const [result, rawResponse, soapHeader, rawRequest] = await client.UpdateAsync({
+      _xml: xml,
+    });
+    return MarketingCloudSOAP.handleResponse({
+      result,
+      rawResponse,
+      rawRequest,
+      soapHeader,
+    });
+  }
+
   /**
    * Describes the available SOAP web services.
    */
