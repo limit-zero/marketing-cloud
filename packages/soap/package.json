@@ -20,6 +20,7 @@
     "@marketing-cloud/auth": "^0.1.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
+    "object-path": "^0.11.4",
     "pretty": "^2.0.0",
     "soap": "^0.30.0"
   },

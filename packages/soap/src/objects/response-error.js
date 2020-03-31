@@ -1,4 +1,5 @@
 const pretty = require('pretty');
+const { get } = require('object-path');
 
 class ResponseError extends Error {
   /**
@@ -11,8 +12,8 @@ class ResponseError extends Error {
    * @param  {...any} args
    */
   constructor({ result, rawResponse, rawRequest } = {}, message, ...args) {
-    const formatted = message ? message.replace(ResponseError.pattern, '') : message;
-    super(formatted, ...args);
+    const errorMessage = get(result, 'Results.0.ErrorMessage');
+    super(errorMessage || message, ...args);
 
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, ResponseError);
@@ -23,6 +24,6 @@ class ResponseError extends Error {
   }
 }
 
-ResponseError.pattern = /^error: /i;
+ResponseError.pattern = /^error/i;
 
 module.exports = ResponseError;
