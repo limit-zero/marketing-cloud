@@ -164,10 +164,7 @@ class MarketingCloudSOAP {
       this.token = await this.auth.retrieve();
       const wsdl = `${this.token.soapUrl}etframework.wsdl`;
       if (!this.clientPromise) {
-        this.clientPromise = soap.createClientAsync(wsdl, {
-          namespaceArrayElements: false,
-          ...this.soapOptions,
-        });
+        this.clientPromise = soap.createClientAsync(wsdl, this.soapOptions);
       }
       const client = await this.clientPromise;
       applyAuthHeader(client, `<fueloauth>${this.token.value}</fueloauth>`);
