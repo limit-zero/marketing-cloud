@@ -13,7 +13,8 @@ class ResponseError extends Error {
    */
   constructor({ result, rawResponse, rawRequest } = {}, message, ...args) {
     const errorMessage = get(result, 'Results.0.ErrorMessage');
-    super(errorMessage || message, ...args);
+    const statusMessage = get(result, 'Results.0.StatusMessage');
+    super(errorMessage || statusMessage || message, ...args);
 
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, ResponseError);
