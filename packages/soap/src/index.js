@@ -145,10 +145,17 @@ class MarketingCloudSOAP {
     });
   }
 
-  async raw(xml) {
+  async raw(xml, requestType) {
     const client = await this.client();
-    const [result, rawResponse, soapHeader, rawRequest] = await client.UpdateAsync({
-      _xml: xml,
+    const method = `${requestType}Async`;
+    const tag = `${requestType}Request`;
+
+    const [result, rawResponse, soapHeader, rawRequest] = await client[method]({
+      _xml: `
+        <${tag} xmlns="http://exacttarget.com/wsdl/partnerAPI">
+          ${xml}
+        </${tag}>
+      `,
     });
     return MarketingCloudSOAP.handleResponse({
       result,
