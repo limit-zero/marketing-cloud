@@ -6,13 +6,13 @@ const buildComplexFilter = require('../utils/build-complex-filter');
 
 module.exports = {
   Send: {
-    email: ({ Email }, _, { mc }, info) => {
+    email: ({ Email }, _, { soap }, info) => {
       if (!Email || !Email.ID) return null;
       const props = typeProperties(info);
-      return mc.retrieveById('Email', Email.ID, props);
+      return soap.retrieveById('Email', Email.ID, props);
     },
 
-    links: async ({ ID }, _, { mc }, info) => {
+    links: async ({ ID }, _, { soap }, info) => {
       const props = typeProperties(info);
       const Filter = {
         attributes: { 'xsi:type': 'SimpleFilterPart' },
@@ -20,7 +20,7 @@ module.exports = {
         SimpleOperator: 'equals',
         Value: ID,
       };
-      const { Results } = await mc.retrieve('LinkSend', props, { Filter });
+      const { Results } = await soap.retrieve('LinkSend', props, { Filter });
       return Results;
     },
   },
@@ -29,17 +29,17 @@ module.exports = {
    *
    */
   Query: {
-    send: (_, { input }, { mc }, info) => {
+    send: (_, { input }, { soap }, info) => {
       const { id } = input;
       const props = typeProperties(info);
-      return mc.retrieveById('Send', id, props);
+      return soap.retrieveById('Send', id, props);
     },
 
-    sends: async (_, { input }, { mc }, info) => {
+    sends: async (_, { input }, { soap }, info) => {
       const { continueRequest, ids, emailIds } = input;
       const props = connectionProps(info);
       if (continueRequest) {
-        const nextBatch = await mc.continueRetrieve(continueRequest);
+        const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
       const options = {};
@@ -52,7 +52,7 @@ module.exports = {
       } else if (emailFilter) {
         options.Filter = emailFilter;
       }
-      const response = await mc.retrieve('Send', props, options);
+      const response = await soap.retrieve('Send', props, options);
       return buildConnection(response);
     },
   },

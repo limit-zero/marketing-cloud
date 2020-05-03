@@ -12,22 +12,22 @@ module.exports = {
    *
    */
   Query: {
-    subscriber: (_, { input }, { mc }, info) => {
+    subscriber: (_, { input }, { soap }, info) => {
       const { id } = input;
       const props = typeProperties(info);
-      return mc.retrieveById('Subscriber', id, props);
+      return soap.retrieveById('Subscriber', id, props);
     },
 
-    subscribers: async (_, { input }, { mc }, info) => {
+    subscribers: async (_, { input }, { soap }, info) => {
       const { continueRequest, ids } = input;
       if (continueRequest) {
-        const nextBatch = await mc.continueRetrieve(continueRequest);
+        const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
       const props = connectionProps(info);
       const Filter = buildInFilter({ prop: 'ID', values: ids });
       const options = { ...(Filter && { Filter }) };
-      const response = await mc.retrieve('Subscriber', props, options);
+      const response = await soap.retrieve('Subscriber', props, options);
       return buildConnection(response);
     },
   },

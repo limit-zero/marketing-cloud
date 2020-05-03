@@ -1,6 +1,6 @@
 const { ApolloServer } = require('apollo-server-express');
 const schema = require('./schema');
-const mc = require('../mc');
+const soap = require('../soap');
 const rest = require('../rest');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = ({ app, path }) => {
   const server = new ApolloServer({
     schema,
-    context: () => ({ mc, rest }),
+    context: () => ({ soap, rest }),
     // Enable in production
     tracing: false,
     cacheControl: false,

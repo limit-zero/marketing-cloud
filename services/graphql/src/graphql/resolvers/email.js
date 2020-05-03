@@ -9,15 +9,15 @@ module.exports = {
    *
    */
   Email: {
-    sends: async ({ ID }, { input }, { mc }, info) => {
+    sends: async ({ ID }, { input }, { soap }, info) => {
       const { continueRequest } = input;
       if (continueRequest) {
-        const nextBatch = await mc.continueRetrieve(continueRequest);
+        const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
       const props = connectionProps(info);
       const Filter = buildSimpleFilter({ prop: 'Email.ID', value: ID });
-      const response = await mc.retrieve('Send', props, { Filter });
+      const response = await soap.retrieve('Send', props, { Filter });
       return buildConnection(response);
     },
   },
@@ -26,22 +26,22 @@ module.exports = {
    *
    */
   Query: {
-    email: async (_, { input }, { mc }, info) => {
+    email: async (_, { input }, { soap }, info) => {
       const { id } = input;
       const props = typeProperties(info);
-      return mc.retrieveById('Email', id, props);
+      return soap.retrieveById('Email', id, props);
     },
 
-    emails: async (_, { input }, { mc }, info) => {
+    emails: async (_, { input }, { soap }, info) => {
       const { continueRequest, ids } = input;
       if (continueRequest) {
-        const nextBatch = await mc.continueRetrieve(continueRequest);
+        const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
       const props = connectionProps(info);
       const Filter = buildInFilter({ prop: 'ID', values: ids });
       const options = { ...(Filter && { Filter }) };
-      const response = await mc.retrieve('Email', props, options);
+      const response = await soap.retrieve('Email', props, options);
       return buildConnection(response);
     },
   },

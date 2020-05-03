@@ -7,15 +7,15 @@ module.exports = {
    *
    */
   Query: {
-    clickEventsForSend: async (_, { input }, { mc }, info) => {
+    clickEventsForSend: async (_, { input }, { soap }, info) => {
       const { sendId, continueRequest } = input;
       if (continueRequest) {
-        const nextBatch = await mc.continueRetrieve(continueRequest);
+        const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
       const props = connectionProps(info);
       const Filter = buildSimpleFilter({ prop: 'SendID', value: sendId });
-      const response = await mc.retrieve('ClickEvent', props, { Filter });
+      const response = await soap.retrieve('ClickEvent', props, { Filter });
       return buildConnection(response);
     },
   },
