@@ -74,6 +74,34 @@ module.exports = {
       const response = await soap.retrieve('DataExtension', props);
       return buildConnection(response);
     },
+
+    /**
+     *
+     */
+    async dataExtensionFields(_, { input }, { soap }, info) {
+      const { customerKey, continueRequest } = input;
+      if (continueRequest) {
+        const nextBatch = await soap.continueRetrieve(continueRequest);
+        return buildConnection(nextBatch);
+      }
+      const props = connectionProps(info);
+      const Filter = simpleFilter({ prop: 'DataExtension.CustomerKey', value: customerKey });
+      const response = await soap.retrieve('DataExtensionField', props, { Filter });
+      return buildConnection(response);
+    },
+
+    /**
+     *
+     */
+    async dataExtensionObjects(_, { input }, { soap }) {
+      const { customerKey, props, continueRequest } = input;
+      if (continueRequest) {
+        const nextBatch = await soap.continueRetrieve(continueRequest);
+        return buildConnection(nextBatch);
+      }
+      const response = await soap.retrieve(`DataExtensionObject[${customerKey}]`, props);
+      return buildConnection(response);
+    },
   },
 
   /**

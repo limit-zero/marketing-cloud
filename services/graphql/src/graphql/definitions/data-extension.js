@@ -5,6 +5,8 @@ module.exports = gql`
 extend type Query {
   dataExtension(input: DataExtensionQueryInput!): DataExtension
   dataExtensions(input: DataExtensionsQueryInput = {}): DataExtensionConnection!
+  dataExtensionFields(input: DataExtensionFieldsQueryInput!): DataExtensionFieldConnection!
+  dataExtensionObjects(input: DataExtensionObjectsQueryInput!): DataExtensionObjectConnection!
 }
 
 extend type Mutation {
@@ -107,7 +109,23 @@ input DataExtensionFieldsInput {
   continueRequest: String
 }
 
+input DataExtensionFieldsQueryInput {
+  "The Customer (External) Key of the Data Extension to load fields for."
+  customerKey: String
+  "A previous request ID to finish processing. All other input will be ignored."
+  continueRequest: String
+}
+
 input DataExtensionObjectsInput {
+  "The object/row properties to retrieve. For example, if the DE has an \`email\` and \`name\` field you'd like to return, set this to \`['email', 'name']\`"
+  props: [String!]!
+  "A previous request ID to finish processing. All other input will be ignored."
+  continueRequest: String
+}
+
+input DataExtensionObjectsQueryInput {
+  "The Customer (External) Key of the Data Extension to load objects for."
+  customerKey: String
   "The object/row properties to retrieve. For example, if the DE has an \`email\` and \`name\` field you'd like to return, set this to \`['email', 'name']\`"
   props: [String!]!
   "A previous request ID to finish processing. All other input will be ignored."
