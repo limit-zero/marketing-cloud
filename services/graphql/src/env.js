@@ -1,4 +1,5 @@
 const {
+  bool,
   cleanEnv,
   port,
   num,
@@ -12,4 +13,6 @@ module.exports = cleanEnv(process.env, {
   FUEL_API_CLIENT_ID: str({ desc: 'The Marketing Cloud API client ID.' }),
   FUEL_API_CLIENT_SECRET: str({ desc: 'The Marketing Cloud API client secret.' }),
   FUEL_API_ACCOUNT_ID: num({ desc: 'Optional account identifier of the target business unit', default: undefined }),
+  NEW_RELIC_ENABLED: bool({ desc: 'Whether New Relic is enabled.', default: true, devDefault: false }),
+  NEW_RELIC_LICENSE_KEY: str({ desc: 'The license key for New Relic.', devDefault: '(unset)' }),
 });
