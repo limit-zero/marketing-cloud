@@ -13,7 +13,7 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@godaddy/terminus": "^4.3.1",
+    "@godaddy/terminus": "^4.4.0",
     "@marketing-cloud/rest": "^0.1.0",
     "@marketing-cloud/soap": "^0.1.3",
     "@marketing-cloud/utils": "^0.0.0",
@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "graphql": "^14.6.0",
     "graphql-type-json": "^0.3.1",
-    "helmet": "^3.21.2",
+    "helmet": "^3.22.0",
     "lodash.merge": "^4.6.2"
   },
   "devDependencies": {
