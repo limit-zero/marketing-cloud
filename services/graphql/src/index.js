@@ -1,33 +1,25 @@
+require('./newrelic');
+
 const http = require('http');
-const { createTerminus } = require('@godaddy/terminus');
+const boot = require('./boot');
+const newrelic = require('./newrelic');
 const app = require('./app');
-const env = require('./env');
-const health = require('./app/health');
-const start = require('./app/start');
-const stop = require('./app/stop');
 const pkg = require('../package.json');
+const { INTERNAL_PORT, EXTERNAL_PORT } = require('./env');
 
-const { log } = console;
-const { INTERNAL_PORT, EXTERNAL_PORT } = env;
-const server = http.createServer(app);
+process.on('unhandledRejection', (e) => {
+  newrelic.noticeError(e);
+  throw e;
+});
 
-const run = async () => {
-  await start();
-  createTerminus(server, {
-    timeout: 1000,
-    signals: ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
-    healthChecks: { '/_health': () => health() },
-    onSignal: () => {
-      log('> Cleaning up...');
-      return stop().catch((e) => log('> CLEANUP ERRORS:', e));
-    },
-    onShutdown: () => log('> Cleanup finished. Shutting down.'),
-  });
-
-  server.listen(INTERNAL_PORT, () => log(`> Ready on http://0.0.0.0:${EXTERNAL_PORT}`));
-};
-
-process.on('unhandledRejection', (e) => { throw e; });
-
-log(`> Booting ${pkg.name} v${pkg.version}...`);
-run().catch((e) => setImmediate(() => { throw e; }));
+boot({
+  name: pkg.name,
+  version: pkg.version,
+  server: http.createServer(app),
+  port: INTERNAL_PORT,
+  exposedPort: EXTERNAL_PORT,
+  onError: newrelic.noticeError.bind(newrelic),
+}).catch((e) => setImmediate(() => {
+  newrelic.noticeError(e);
+  throw e;
+}));

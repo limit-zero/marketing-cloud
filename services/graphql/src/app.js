@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const graphql = require('../graphql/server');
+const graphql = require('./graphql/server');
 
 const app = express();
 const proxies = ['loopback', 'linklocal', 'uniquelocal'];
