@@ -1,4 +1,5 @@
 const { gql } = require('apollo-server-express');
+const apiProperty = require('./api-property');
 const clickEvent = require('./click-event');
 const dataExtension = require('./data-extension');
 const dataFolder = require('./data-folder');
@@ -45,6 +46,7 @@ input ValidateEmailAddressQueryInput {
   validators: [EmailValidators!] = [SyntaxValidator]
 }
 
+${apiProperty}
 ${clickEvent}
 ${dataExtension}
 ${dataFolder}
