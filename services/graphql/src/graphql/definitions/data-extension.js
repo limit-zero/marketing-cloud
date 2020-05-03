@@ -11,6 +11,17 @@ extend type Mutation {
   refreshDataExtension(input: RefreshDataExtensionQueryInput!): Boolean!
 }
 
+enum DataExtensionFieldType {
+  Boolean
+  Date
+  Decimal
+  EmailAddress
+  Locale
+  Number
+  Phone
+  Text
+}
+
 type DataExtension implements ClientIdentifiable @applyInterfaceFields {
   id: String! @prop(name: "ObjectID")
   customerKey: String @prop(name: "CustomerKey")
@@ -23,6 +34,8 @@ type DataExtension implements ClientIdentifiable @applyInterfaceFields {
 
   dataFolderId: Int @prop(name: "CategoryID")
   dataFolder: DataFolder @prop(name: "CategoryID")
+
+  fields(input: DataExtensionFieldsInput = {}): DataExtensionFieldConnection! @prop(name: "CustomerKey")
 }
 
 type DataExtensionConnection @usePropsFrom(type: "DataExtension") {
@@ -32,6 +45,26 @@ type DataExtensionConnection @usePropsFrom(type: "DataExtension") {
 
 type DataExtensionEdge {
   node: DataExtension!
+}
+
+type DataExtensionField {
+  id: String! @prop(name: "ObjectID")
+  type: DataExtensionFieldType! @prop(name: "FieldType")
+  name: String! @prop(name: "Name")
+  defaultValue: String @prop(name: "DefaultValue")
+
+
+  isPrimaryKey: Boolean @prop(name: "IsPrimaryKey")
+  isRequired: Boolean @prop(name: "IsRequired")
+}
+
+type DataExtensionFieldConnection @usePropsFrom(type: "DataExtensionField") {
+  edges: [DataExtensionFieldEdge]!
+  pageInfo: PageInfo!
+}
+
+type DataExtensionFieldEdge {
+  node: DataExtensionField!
 }
 
 "You must provide either an \`objectId\` or a \`customerKey\` (but not both)."
@@ -53,6 +86,11 @@ input RefreshDataExtensionQueryInput {
   objectId: String
   "The Customer (External) Key of the Data Extension to refresh."
   customerKey: String
+}
+
+input DataExtensionFieldsInput {
+  "A previous request ID to finish processing. All other input will be ignored."
+  continueRequest: String
 }
 
 `;

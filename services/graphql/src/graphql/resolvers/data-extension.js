@@ -3,6 +3,7 @@ const { get } = require('@marketing-cloud/utils');
 const typeProperties = require('../utils/type-properties');
 const buildConnection = require('../utils/build-connection');
 const connectionProps = require('../utils/connection-properties');
+const simpleFilter = require('../utils/build-simple-filter');
 
 module.exports = {
   /**
@@ -13,6 +14,18 @@ module.exports = {
       if (!CategoryID) return null;
       const props = typeProperties(info);
       return soap.retrieveById('DataFolder', CategoryID, props);
+    },
+
+    async fields({ CustomerKey }, { input }, { soap }, info) {
+      const { continueRequest } = input;
+      if (continueRequest) {
+        const nextBatch = await soap.continueRetrieve(continueRequest);
+        return buildConnection(nextBatch);
+      }
+      const props = connectionProps(info);
+      const Filter = simpleFilter({ prop: 'DataExtension.CustomerKey', value: CustomerKey });
+      const response = await soap.retrieve('DataExtensionField', props, { Filter });
+      return buildConnection(response);
     },
   },
 
