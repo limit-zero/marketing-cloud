@@ -4,6 +4,7 @@ const clickEvent = require('./click-event');
 const dataExtension = require('./data-extension');
 const dataFolder = require('./data-folder');
 const email = require('./email');
+const filterPart = require('./filter-part');
 const linkSend = require('./link-send');
 const send = require('./send');
 const subscriber = require('./subscriber');
@@ -22,10 +23,29 @@ type Query {
   validateEmailAddress(input: ValidateEmailAddressQueryInput!): Boolean!
 }
 
-enum EmailValidators {
+enum EmailValidator {
   SyntaxValidator
   MXValidator
   ListDetectiveValidator
+}
+
+enum SimpleOperator {
+  equals
+  notEquals
+  greaterThan
+  lessThan
+  isNotNull
+  isNull
+  greaterThanOrEqual
+  lessThanOrEqual
+  between
+  IN
+  like
+}
+
+enum LogicalOperator {
+  AND
+  OR
 }
 
 type Mutation {
@@ -43,7 +63,7 @@ interface ClientIdentifiable {
 
 input ValidateEmailAddressQueryInput {
   email: String!
-  validators: [EmailValidators!] = [SyntaxValidator]
+  validators: [EmailValidator!] = [SyntaxValidator]
 }
 
 ${apiProperty}
@@ -51,6 +71,7 @@ ${clickEvent}
 ${dataExtension}
 ${dataFolder}
 ${email}
+${filterPart}
 ${linkSend}
 ${send}
 ${subscriber}

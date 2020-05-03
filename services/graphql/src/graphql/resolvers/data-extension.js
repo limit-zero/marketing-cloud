@@ -5,6 +5,7 @@ const typeProperties = require('../utils/type-properties');
 const buildConnection = require('../utils/build-connection');
 const connectionProps = require('../utils/connection-properties');
 const simpleFilter = require('../utils/build-simple-filter');
+const buildFilter = require('../utils/build-filter-from-input');
 
 module.exports = {
   /**
@@ -23,7 +24,8 @@ module.exports = {
         const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
-      const response = await soap.retrieve(`DataExtensionObject[${CustomerKey}]`, props);
+      const Filter = buildFilter(input);
+      const response = await soap.retrieve(`DataExtensionObject[${CustomerKey}]`, props, { Filter });
       return buildConnection(response);
     },
 
@@ -70,8 +72,9 @@ module.exports = {
         const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
+      const Filter = buildFilter(input);
       const props = connectionProps(info);
-      const response = await soap.retrieve('DataExtension', props);
+      const response = await soap.retrieve('DataExtension', props, { Filter });
       return buildConnection(response);
     },
 
@@ -99,7 +102,8 @@ module.exports = {
         const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
-      const response = await soap.retrieve(`DataExtensionObject[${customerKey}]`, props);
+      const Filter = buildFilter(input);
+      const response = await soap.retrieve(`DataExtensionObject[${customerKey}]`, props, { Filter });
       return buildConnection(response);
     },
   },

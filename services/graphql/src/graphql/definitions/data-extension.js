@@ -94,6 +94,8 @@ input DataExtensionQueryInput {
 input DataExtensionsQueryInput {
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
+  "Filters to apply to the query."
+  filter: FilterInput = {}
 }
 
 "You must provide either an \`objectId\` or a \`customerKey\` (but not both)."
@@ -119,6 +121,8 @@ input DataExtensionFieldsQueryInput {
 input DataExtensionObjectsInput {
   "The object/row properties to retrieve. For example, if the DE has an \`email\` and \`name\` field you'd like to return, set this to \`['email', 'name']\`"
   props: [String!]!
+  "Filters to apply to the query."
+  filter: FilterInput = {}
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
 }
@@ -128,6 +132,8 @@ input DataExtensionObjectsQueryInput {
   customerKey: String
   "The object/row properties to retrieve. For example, if the DE has an \`email\` and \`name\` field you'd like to return, set this to \`['email', 'name']\`"
   props: [String!]!
+  "Filters to apply to the query."
+  filter: FilterInput = {}
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
 }
