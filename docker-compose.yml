@@ -2,6 +2,9 @@ version: '3.7'
 
 x-env-defaults: &env
   NODE_ENV: development
+  NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
+  NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
+  YARN_CACHE_FOLDER: /.yarn-cache
 
 x-node-defaults: &node
   tty: true
@@ -34,6 +37,8 @@ services:
       FUEL_API_CLIENT_SECRET: ${FUEL_API_CLIENT_SECRET}
       FUEL_API_AUTH_URL: ${FUEL_API_AUTH_URL}
       FUEL_API_ACCOUNT_ID: ${FUEL_API_ACCOUNT_ID}
+      TERMINUS_TIMEOUT: 1000
+      TERMINUS_SHUTDOWN_DELAY: 0
     ports:
       - "17430:80"
 
