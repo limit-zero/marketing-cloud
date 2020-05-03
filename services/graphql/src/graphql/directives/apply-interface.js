@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
-const { SchemaDirectiveVisitor } = require('graphql-tools');
+const { SchemaDirectiveVisitor } = require('apollo-server-express');
 
 class ApplyInterfaceDirective extends SchemaDirectiveVisitor {
   visitObject(object) {

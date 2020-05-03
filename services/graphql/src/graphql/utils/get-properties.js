@@ -1,4 +1,4 @@
-const { isObject } = require('@base-cms/utils');
+const { isObject } = require('@marketing-cloud/utils');
 
 const getFields = (schema, type, selectionSet, fragments, fields = []) => {
   if (!isObject(selectionSet)) return fields;

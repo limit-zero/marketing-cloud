@@ -1,4 +1,4 @@
-const gql = require('graphql-tag');
+const { gql } = require('apollo-server-express');
 const clickEvent = require('./click-event');
 const dataExtension = require('./data-extension');
 const dataFolder = require('./data-folder');

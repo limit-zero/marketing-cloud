@@ -1,4 +1,4 @@
-const { getAsArray } = require('@base-cms/object-path');
+const { getAsArray } = require('@marketing-cloud/utils');
 const getProperties = require('./get-properties');
 
 module.exports = ({

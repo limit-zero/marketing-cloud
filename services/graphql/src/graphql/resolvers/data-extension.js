@@ -1,5 +1,5 @@
 const { UserInputError } = require('apollo-server-express');
-const { get } = require('@base-cms/object-path');
+const { get } = require('@marketing-cloud/utils');
 const typeProperties = require('../utils/type-properties');
 const buildConnection = require('../utils/build-connection');
 const connectionProps = require('../utils/connection-properties');

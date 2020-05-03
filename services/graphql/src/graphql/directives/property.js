@@ -1,5 +1,5 @@
-const { SchemaDirectiveVisitor } = require('graphql-tools');
-const { get } = require('object-path');
+const { SchemaDirectiveVisitor } = require('apollo-server-express');
+const { get } = require('@marketing-cloud/utils');
 
 class PropertyDirective extends SchemaDirectiveVisitor {
   /**
