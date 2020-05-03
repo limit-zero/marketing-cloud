@@ -35,6 +35,7 @@ type DataExtension implements ClientIdentifiable @applyInterfaceFields {
   dataFolderId: Int @prop(name: "CategoryID")
   dataFolder: DataFolder @prop(name: "CategoryID")
 
+  objects(input: DataExtensionObjectsInput!): DataExtensionObjectConnection @prop(name: "CustomerKey")
   fields(input: DataExtensionFieldsInput = {}): DataExtensionFieldConnection! @prop(name: "CustomerKey")
 }
 
@@ -56,6 +57,19 @@ type DataExtensionField {
 
   isPrimaryKey: Boolean @prop(name: "IsPrimaryKey")
   isRequired: Boolean @prop(name: "IsRequired")
+}
+
+type DataExtensionObject {
+  properties: [APIProperty]
+}
+
+type DataExtensionObjectConnection {
+  edges: [DataExtensionObjectEdge]!
+  pageInfo: PageInfo!
+}
+
+type DataExtensionObjectEdge {
+  node: DataExtensionObject!
 }
 
 type DataExtensionFieldConnection @usePropsFrom(type: "DataExtensionField") {
@@ -89,6 +103,13 @@ input RefreshDataExtensionQueryInput {
 }
 
 input DataExtensionFieldsInput {
+  "A previous request ID to finish processing. All other input will be ignored."
+  continueRequest: String
+}
+
+input DataExtensionObjectsInput {
+  "The object/row properties to retrieve. For example, if the DE has an \`email\` and \`name\` field you'd like to return, set this to \`['email', 'name']\`"
+  props: [String!]!
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
 }

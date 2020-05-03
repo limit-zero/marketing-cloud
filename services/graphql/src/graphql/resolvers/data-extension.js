@@ -1,5 +1,6 @@
 const { UserInputError } = require('apollo-server-express');
 const { get } = require('@marketing-cloud/utils');
+const checkOrInput = require('../utils/check-or-input');
 const typeProperties = require('../utils/type-properties');
 const buildConnection = require('../utils/build-connection');
 const connectionProps = require('../utils/connection-properties');
@@ -16,6 +17,16 @@ module.exports = {
       return soap.retrieveById('DataFolder', CategoryID, props);
     },
 
+    async objects({ CustomerKey }, { input }, { soap }) {
+      const { props, continueRequest } = input;
+      if (continueRequest) {
+        const nextBatch = await soap.continueRetrieve(continueRequest);
+        return buildConnection(nextBatch);
+      }
+      const response = await soap.retrieve(`DataExtensionObject[${CustomerKey}]`, props);
+      return buildConnection(response);
+    },
+
     async fields({ CustomerKey }, { input }, { soap }, info) {
       const { continueRequest } = input;
       if (continueRequest) {
@@ -29,6 +40,12 @@ module.exports = {
     },
   },
 
+  DataExtensionObject: {
+    properties({ Properties }) {
+      return Properties.Property;
+    },
+  },
+
   /**
    *
    */
@@ -37,10 +54,8 @@ module.exports = {
      *
      */
     dataExtension: async (_, { input }, { soap }, info) => {
+      checkOrInput({ input, keys: ['objectId', 'customerKey'] });
       const { objectId, customerKey } = input;
-      if (!objectId && !customerKey) throw new UserInputError('Either the objectId or the customerKey input must be provided.');
-      if (objectId && customerKey) throw new UserInputError('You cannot provide both the objectId and customerKey as input.');
-
       const props = typeProperties(info);
       if (objectId) return soap.retrieveByObjectId('DataExtension', objectId, props);
       return soap.retrieveByCustomerKey('DataExtension', customerKey, props);
