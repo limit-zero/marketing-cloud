@@ -11,7 +11,7 @@ type Subscriber implements ClientIdentifiable @applyInterfaceFields {
   id: Int! @prop(name: "ID")
   emailAddress: String! @prop(name: "EmailAddress")
   subscriberKey: String! @prop(name: "SubscriberKey")
-  attributes: JSON
+  attributes: [APIProperty!]!
   emailTypePreference: String @prop(name: "EmailTypePreference")
 
   createdDate: Date @prop(name: "CreatedDate")
@@ -31,8 +31,8 @@ input SubscriberQueryInput {
 }
 
 input SubscribersQueryInput {
-  "Subscriber IDs to return. Will do an IN query."
-  ids: [Int] = []
+  "Filters to apply to the query."
+  filter: FilterInput = {}
   "A previous request ID to finish processing. All other input will be ignored."
   continueRequest: String
 }

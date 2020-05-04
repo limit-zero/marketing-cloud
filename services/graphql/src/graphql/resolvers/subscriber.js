@@ -1,11 +1,11 @@
 const typeProperties = require('../utils/type-properties');
 const connectionProps = require('../utils/connection-properties');
 const buildConnection = require('../utils/build-connection');
-const buildInFilter = require('../utils/build-in-filter');
+const buildFilter = require('../utils/build-filter-from-input');
 
 module.exports = {
   Subscriber: {
-    attributes: ({ Attributes }) => Attributes,
+    attributes: ({ Attributes }) => (Array.isArray(Attributes) ? Attributes : []),
   },
 
   /**
@@ -19,15 +19,14 @@ module.exports = {
     },
 
     subscribers: async (_, { input }, { soap }, info) => {
-      const { continueRequest, ids } = input;
+      const { continueRequest } = input;
       if (continueRequest) {
         const nextBatch = await soap.continueRetrieve(continueRequest);
         return buildConnection(nextBatch);
       }
       const props = connectionProps(info);
-      const Filter = buildInFilter({ prop: 'ID', values: ids });
-      const options = { ...(Filter && { Filter }) };
-      const response = await soap.retrieve('Subscriber', props, options);
+      const Filter = buildFilter(input);
+      const response = await soap.retrieve('Subscriber', props, { Filter });
       return buildConnection(response);
     },
   },
