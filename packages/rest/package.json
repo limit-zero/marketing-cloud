@@ -1,6 +1,6 @@
 {
   "name": "@marketing-cloud/rest",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Salesforce Marketing Cloud REST Client",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -17,7 +17,7 @@
     "node": ">=8.6"
   },
   "dependencies": {
-    "@marketing-cloud/auth": "^0.1.0",
+    "@marketing-cloud/auth": "^0.2.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
