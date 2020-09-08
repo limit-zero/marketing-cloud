@@ -41,7 +41,7 @@ class MarketingCloudREST {
     const path = cleanPath(endpoint);
     if (!path) throw new Error('No API endpoint was provided.');
 
-    const url = `${this.token.restUrl}/${path}`;
+    const url = `${this.token.restUrl.replace(/\/+$/, '')}/${path}`;
     const options = {
       method,
       headers: {
@@ -61,6 +61,8 @@ class MarketingCloudREST {
       const error = new Error(message);
       error.statusCode = res.status;
       error.statusText = res.statusText;
+      error.json = json;
+      error.res = res;
       throw error;
     }
     return json;
