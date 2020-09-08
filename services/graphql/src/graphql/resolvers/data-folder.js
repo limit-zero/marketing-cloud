@@ -1,6 +1,5 @@
 const typeProperties = require('../utils/type-properties');
 
-
 const retrieveTree = async ({ id, props }, { soap }, tree = []) => {
   const result = await soap.retrieveById('DataFolder', id, props);
   tree.push(result);
