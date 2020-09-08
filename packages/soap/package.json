@@ -18,16 +18,16 @@
   },
   "dependencies": {
     "@marketing-cloud/auth": "^0.1.0",
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.27",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "object-path": "^0.11.4",
     "pretty": "^2.0.0",
-    "soap": "^0.30.0"
+    "soap": "^0.33.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2"
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   },
   "publishConfig": {
     "access": "public"

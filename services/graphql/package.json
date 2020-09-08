@@ -13,24 +13,24 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@godaddy/terminus": "^4.4.0",
+    "@godaddy/terminus": "^4.4.1",
     "@marketing-cloud/rest": "^0.1.0",
     "@marketing-cloud/soap": "^0.1.3",
     "@marketing-cloud/utils": "^0.0.0",
-    "apollo-server-express": "^2.12.0",
+    "apollo-server-express": "^2.17.0",
     "cors": "^2.8.5",
-    "envalid": "^6.0.1",
+    "envalid": "^6.0.2",
     "express": "^4.17.1",
-    "graphql": "^14.6.0",
-    "graphql-type-json": "^0.3.1",
-    "helmet": "^3.22.0",
+    "graphql": "^15.3.0",
+    "graphql-type-json": "^0.3.2",
+    "helmet": "^4.1.0",
     "lodash.merge": "^4.6.2",
-    "newrelic": "^6.6.0"
+    "newrelic": "^6.13.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "gulp": "^4.0.2",
     "gulp-cached": "^1.1.1",
     "gulp-eslint": "^6.0.0"
