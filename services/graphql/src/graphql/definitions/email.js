@@ -20,6 +20,7 @@ type Email implements ClientIdentifiable @applyInterfaceFields {
   createdDate: Date @prop(name: "CreatedDate")
   modifiedDate: Date @prop(name: "ModifiedDate")
 
+  dataFolder: DataFolder @prop(name: "CategoryID")
   sends(input: EmailSendsInput = {}): SendConnection! @prop(name: "ID")
 
   html: String @prop(name: "HTMLBody")

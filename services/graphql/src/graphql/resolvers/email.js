@@ -10,6 +10,18 @@ module.exports = {
    *
    */
   Email: {
+    /**
+     *
+     */
+    dataFolder: ({ CategoryID }, _, { soap }, info) => {
+      if (!CategoryID) return null;
+      const props = typeProperties(info);
+      return soap.retrieveById('DataFolder', CategoryID, props);
+    },
+
+    /**
+     *
+     */
     sends: async ({ ID }, { input }, { soap }, info) => {
       const { continueRequest } = input;
       if (continueRequest) {
