@@ -25,6 +25,17 @@ services:
     entrypoint: ["tail"]
     command: ["-f", "/dev/null"]
 
+  email-export:
+    <<: *node
+    working_dir: /mc/services/email-export
+    entrypoint: ["/bin/sh"]
+    environment:
+      <<: *env
+      GRAPHQL_URL: http://graphql
+      EMAIL_EXPORT_MONGO_DSN: ${EMAIL_EXPORT_MONGO_DSN-}
+    depends_on:
+      - graphql
+
   graphql:
     <<: *node
     working_dir: /mc/services/graphql

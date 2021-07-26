@@ -1,0 +1,34 @@
+{
+  "name": "@marketing-cloud/email-export-service",
+  "version": "0.2.0",
+  "description": "Exports Marketing Cloud emails to MongoDB",
+  "main": "index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/limit-zero/marketing-cloud/tree/master/services/email-export-service",
+  "private": true,
+  "scripts": {
+    "dev": "gulp",
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@parameter1/mongodb": "^1.4.16",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-context": "^1.0.20",
+    "apollo-link-http": "^1.5.17",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.12.5",
+    "node-fetch": "^2.6.1",
+    "slug": "^4.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-eslint": "^6.0.0"
+  }
+}
