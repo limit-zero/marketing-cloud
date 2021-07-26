@@ -21,6 +21,8 @@ type Email implements ClientIdentifiable @applyInterfaceFields {
   modifiedDate: Date @prop(name: "ModifiedDate")
 
   sends(input: EmailSendsInput = {}): SendConnection! @prop(name: "ID")
+
+  html: String @prop(name: "HTMLBody")
 }
 
 type EmailAsset {
