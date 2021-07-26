@@ -106,6 +106,11 @@ module.exports = {
 
     emailAssets: async (_, { input }, { rest }) => {
       const body = {
+        query: {
+          property: 'assetType.name',
+          simpleOperator: 'equals',
+          value: 'htmlemail',
+        },
         fields: ['name', 'views', 'category', 'createdDate', 'modifiedDate'],
         page: { pageSize: input.pageSize, page: input.page },
       };

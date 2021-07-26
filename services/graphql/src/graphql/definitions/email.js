@@ -29,7 +29,7 @@ type Email implements ClientIdentifiable @applyInterfaceFields {
 type EmailAsset {
   id: Int!
   clientId: Int!
-  emailId: Int!
+  emailId: Int
   name: String!
   subject: String
 
