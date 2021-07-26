@@ -1,3 +1,4 @@
+const { get } = require('@parameter1/utils');
 const typeProperties = require('../utils/type-properties');
 const connectionProps = require('../utils/connection-properties');
 const buildConnection = require('../utils/build-connection');
@@ -25,6 +26,46 @@ module.exports = {
   /**
    *
    */
+  EmailAsset: {
+    /**
+     *
+     */
+    categoryId: (asset) => get(asset, 'category.id'),
+
+    /**
+     *
+     */
+    dataFolder: (asset, _, { soap }, info) => {
+      const id = get(asset, 'category.id');
+      if (!id) return null;
+      const props = typeProperties(info);
+      return soap.retrieveById('DataFolder', id, props);
+    },
+
+    /**
+     *
+     */
+    dataFolderId: (asset) => get(asset, 'category.id'),
+
+    /**
+     *
+     */
+    emailId: (asset) => get(asset, 'legacyData.legacyId'),
+
+    /**
+     *
+     */
+    html: (asset) => get(asset, 'views.html.content'),
+
+    /**
+     *
+     */
+    subject: (asset) => get(asset, 'views.subjectline.content'),
+  },
+
+  /**
+   *
+   */
   Query: {
     email: async (_, { input }, { soap }, info) => {
       const { id } = input;
@@ -43,6 +84,30 @@ module.exports = {
       const options = { ...(Filter && { Filter }) };
       const response = await soap.retrieve('Email', props, options);
       return buildConnection(response);
+    },
+
+    emailAssets: async (_, { input }, { rest }) => {
+      const body = {
+        fields: ['name', 'views', 'category', 'createdDate', 'modifiedDate'],
+        page: { pageSize: input.pageSize, page: input.page },
+      };
+
+      const {
+        count,
+        page,
+        pageSize,
+        items,
+      } = await rest.request({ endpoint: '/asset/v1/content/assets/query', method: 'POST', body });
+
+      const hasNextPage = count > (page * pageSize);
+      return {
+        edges: items,
+        totalCount: count,
+        pageInfo: {
+          hasNextPage,
+          nextPage: hasNextPage ? page + 1 : null,
+        },
+      };
     },
   },
 };

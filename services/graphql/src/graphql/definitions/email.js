@@ -5,6 +5,7 @@ module.exports = gql`
 extend type Query {
   email(input: EmailQueryInput = {}): Email
   emails(input: EmailsQueryInput = {}): EmailConnection!
+  emailAssets(input: EmailAssetsQueryInput = {}): EmailAssetsConnection!
 }
 
 type Email implements ClientIdentifiable @applyInterfaceFields {
@@ -22,6 +23,34 @@ type Email implements ClientIdentifiable @applyInterfaceFields {
   sends(input: EmailSendsInput = {}): SendConnection! @prop(name: "ID")
 }
 
+type EmailAsset {
+  id: Int!
+  emailId: Int!
+  name: String!
+  subject: String
+
+  categoryId: Int
+  dataFolderId: Int
+
+  createdDate: Date
+  modifiedDate: Date
+
+  html: String
+
+  dataFolder: DataFolder
+}
+
+type EmailAssetsConnection {
+  edges: [EmailAsset!]!
+  totalCount: Int!
+  pageInfo: EmailAssetsResponsePageInfo!
+}
+
+type EmailAssetsResponsePageInfo {
+  nextPage: Int
+  hasNextPage: Boolean!
+}
+
 type EmailConnection @usePropsFrom(type: "Email") {
   edges: [EmailEdge]!
   pageInfo: PageInfo!
@@ -29,6 +58,11 @@ type EmailConnection @usePropsFrom(type: "Email") {
 
 type EmailEdge {
   node: Email!
+}
+
+input EmailAssetsQueryInput {
+  page: Int = 1
+  pageSize: Int = 50
 }
 
 input EmailQueryInput {
