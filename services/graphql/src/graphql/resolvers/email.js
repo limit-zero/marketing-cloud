@@ -4,6 +4,7 @@ const connectionProps = require('../utils/connection-properties');
 const buildConnection = require('../utils/build-connection');
 const buildInFilter = require('../utils/build-in-filter');
 const buildSimpleFilter = require('../utils/build-simple-filter');
+const { FUEL_API_ACCOUNT_ID } = require('../../env');
 
 module.exports = {
   /**
@@ -43,6 +44,11 @@ module.exports = {
      *
      */
     categoryId: (asset) => get(asset, 'category.id'),
+
+    /**
+     *
+     */
+    clientId: () => FUEL_API_ACCOUNT_ID,
 
     /**
      *
