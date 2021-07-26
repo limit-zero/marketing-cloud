@@ -2,6 +2,7 @@ const gql = require('graphql-tag');
 const apollo = require('./apollo');
 const batch = require('./batch');
 const slug = require('./slug');
+const getClientName = require('./get-client-name');
 
 const { log } = console;
 
@@ -60,9 +61,16 @@ module.exports = async ({ collection } = {}) => {
 
       const folderPath = dataFolder.fullName.split('>').map((v) => slug(v)).filter((v) => v).join('/');
       const filter = { entity };
+
+      const clientName = getClientName(clientId);
+
       const $set = {
         emailId,
-        clientId,
+        client: {
+          id: clientId,
+          name: clientName,
+          slug: slug(clientName),
+        },
         assetId: result.id,
         name: result.name,
         slug: slug(result.name),
