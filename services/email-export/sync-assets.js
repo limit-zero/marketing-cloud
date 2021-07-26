@@ -1,5 +1,5 @@
 const gql = require('graphql-tag');
-const apollo = require('./apollo');
+const createApollo = require('./apollo');
 const batch = require('./batch');
 const slug = require('./slug');
 const getClientName = require('./get-client-name');
@@ -10,7 +10,7 @@ module.exports = async ({ collection } = {}) => {
   log('Syncing email assets...');
   const pageSize = 100;
 
-  const countResult = await apollo.query({
+  const countResult = await createApollo().query({
     query: gql`
       query {
         emailAssets(input: { pageSize: 1 }) {
@@ -43,7 +43,7 @@ module.exports = async ({ collection } = {}) => {
     `;
 
     const variables = { pageSize, page };
-    const { data } = await apollo.query({ query, variables });
+    const { data } = await createApollo().query({ query, variables });
     return data.emailAssets.edges;
   };
 

@@ -3,7 +3,7 @@ const { ApolloClient } = require('apollo-client');
 const { InMemoryCache } = require('apollo-cache-inmemory');
 const { createHttpLink } = require('apollo-link-http');
 
-module.exports = new ApolloClient({
+module.exports = () => new ApolloClient({
   connectToDevTools: false,
   ssrMode: true,
   link: createHttpLink({
