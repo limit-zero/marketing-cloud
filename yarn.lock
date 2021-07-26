@@ -982,6 +982,13 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@parameter1/utils@^1.1.21":
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/@parameter1/utils/-/utils-1.1.21.tgz#2a34b1aca14226b5d7bb4f62b76b3aa3dee90c90"
+  integrity sha512-yq41MDGigfYa4rdzBwKSACFut0eBrRUQsFppdNK3exKGNtetdfRWOf8EzkKswP5f78mzr18u6rlErDjmR5HOzQ==
+  dependencies:
+    object-path "^0.11.5"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -5704,6 +5711,11 @@ object-path@^0.11.4:
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.4.tgz#370ae752fbf37de3ea70a861c23bba8915691949"
   integrity sha1-NwrnUvvzfePqcKhhwju6iRVpGUk=
+
+object-path@^0.11.5:
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.5.tgz#d4e3cf19601a5140a55a16ad712019a9c50b577a"
+  integrity sha512-jgSbThcoR/s+XumvGMTMf81QVBmah+/Q7K7YduKeKVWL7N111unR2d6pZZarSk6kY/caeNxUDyxOvMWyzoU2eg==
 
 object-visit@^1.0.0:
   version "1.0.1"

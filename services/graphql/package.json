@@ -17,6 +17,7 @@
     "@marketing-cloud/rest": "^0.2.0",
     "@marketing-cloud/soap": "^0.2.0",
     "@marketing-cloud/utils": "^0.2.0",
+    "@parameter1/utils": "^1.1.21",
     "apollo-server-express": "^2.17.0",
     "cors": "^2.8.5",
     "envalid": "^6.0.2",
